@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DMS_Dispatch__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>DMS Dispatch</label>
+    <referenceTo>DMS_Dispatch__c</referenceTo>
+    <relationshipLabel>Inventory Transactions</relationshipLabel>
+    <relationshipName>DMS_Dispatch_Transactions</relationshipName>
+    <type>Lookup</type>
+</CustomField>

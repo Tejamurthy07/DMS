@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Delivery_Status__c</fullName>
+    <label>Delivery Status</label>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value><fullName>Pending</fullName><default>true</default><label>Pending</label></value>
+            <value><fullName>In Transit</fullName><default>false</default><label>In Transit</label></value>
+            <value><fullName>Partially Delivered</fullName><default>false</default><label>Partially Delivered</label></value>
+            <value><fullName>Delivered</fullName><default>false</default><label>Delivered</label></value>
+            <value><fullName>Failed</fullName><default>false</default><label>Failed</label></value>
+            <value><fullName>Rescheduled</fullName><default>false</default><label>Rescheduled</label></value>
+            <value><fullName>Returned to Sender</fullName><default>false</default><label>Returned to Sender</label></value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

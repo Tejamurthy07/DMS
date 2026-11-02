@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Approver__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>Approval Assignee</label>
+    <referenceTo>User</referenceTo>
+    <relationshipLabel>Sales Returns to Approve</relationshipLabel>
+    <relationshipName>Sales_Returns_To_Approve</relationshipName>
+    <type>Lookup</type>
+</CustomField>

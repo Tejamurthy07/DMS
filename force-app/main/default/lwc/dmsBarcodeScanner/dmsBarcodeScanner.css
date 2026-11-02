@@ -1,0 +1,16 @@
+.camera-frame {
+    display: grid;
+    justify-items: center;
+}
+
+.camera-video {
+    width: min(100%, 34rem);
+    max-height: 22rem;
+    border-radius: 0.5rem;
+    background: #181818;
+    object-fit: cover;
+}
+
+.slds-button-group {
+    gap: 0.5rem;
+}

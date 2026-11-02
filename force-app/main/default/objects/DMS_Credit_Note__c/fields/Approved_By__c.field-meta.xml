@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Approved_By__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>Approved By</label>
+    <referenceTo>User</referenceTo>
+    <relationshipLabel>DMS Credit Notes Approved</relationshipLabel>
+    <relationshipName>DMS_Credit_Notes_Approved</relationshipName>
+    <type>Lookup</type>
+</CustomField>

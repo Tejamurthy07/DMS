@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomPermission xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Authorizes Salesforce company users to manage primary invoices, company dispatches, and company warehouse inventory.</description>
+    <isLicensed>false</isLicensed>
+    <label>DMS Company Inventory Access</label>
+</CustomPermission>

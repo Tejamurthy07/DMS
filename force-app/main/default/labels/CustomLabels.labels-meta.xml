@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>DMS_Approval_User_Name</fullName>
+        <categories>DMS</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DMS approval user name</shortDescription>
+        <value>Guna Deshmukh</value>
+    </labels>
+</CustomLabels>

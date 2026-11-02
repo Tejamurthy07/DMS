@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Order_Line_Item__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>Secondary Order Line Item</label>
+    <referenceTo>OrderItem</referenceTo>
+    <relationshipLabel>DMS Invoice Lines</relationshipLabel>
+    <relationshipName>DMS_Invoice_Lines</relationshipName>
+    <type>Lookup</type>
+</CustomField>

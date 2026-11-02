@@ -1,0 +1,144 @@
+<template>
+    <lightning-card title={scannerTitle} icon-name="utility:scan">
+        <div class="slds-p-horizontal_medium slds-p-bottom_medium">
+            <p class="slds-text-body_small slds-m-bottom_small">
+                {scannerDescription}
+            </p>
+
+            <div class="slds-grid slds-wrap slds-gutters_small slds-grid_vertical-align-end">
+                <div class="slds-col slds-size_1-of-1 slds-large-size_8-of-12">
+                    <lightning-input
+                        type="text"
+                        label="Product barcode"
+                        value={barcode}
+                        maxlength="50"
+                        autocomplete="off"
+                        onkeydown={handleKeyDown}
+                        onchange={handleBarcodeChange}>
+                    </lightning-input>
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-large-size_4-of-12 slds-button-group">
+                    <lightning-button
+                        label={scanButtonLabel}
+                        variant="brand"
+                        disabled={lookupDisabled}
+                        onclick={handleLookup}>
+                    </lightning-button>
+                    <lightning-button
+                        label={cameraButtonLabel}
+                        disabled={isLoading}
+                        onclick={handleCameraToggle}>
+                    </lightning-button>
+                </div>
+            </div>
+
+            <template lwc:if={cameraActive}>
+                <div class="camera-frame slds-m-top_medium">
+                    <video class="camera-video" muted playsinline></video>
+                    <p class="slds-text-body_small slds-m-top_x-small">
+                        Point the camera at a product barcode. The camera stops after a match.
+                    </p>
+                </div>
+            </template>
+
+            <template lwc:if={cameraMessage}>
+                <div class="slds-m-top_small" role="status">{cameraMessage}</div>
+            </template>
+            <template lwc:if={errorMessage}>
+                <div class="slds-text-color_error slds-m-top_small" role="alert">{errorMessage}</div>
+            </template>
+            <template lwc:if={successMessage}>
+                <div class="slds-text-color_success slds-m-top_small" role="status">{successMessage}</div>
+            </template>
+            <template lwc:if={isLoading}>
+                <lightning-spinner alternative-text="Looking up barcode" size="small"></lightning-spinner>
+            </template>
+
+            <template lwc:if={dispatchScanMode}>
+                <template lwc:if={dispatchResult}>
+                    <section class="slds-box slds-theme_default slds-m-top_medium" aria-live="polite">
+                        <h2 class="slds-text-heading_small">
+                            Dispatch {dispatchResult.dispatchNumber}
+                        </h2>
+                        <p class="slds-text-body_small slds-m-top_x-small">
+                            Status: {dispatchResult.status}. These scans record verification progress only; use the existing dispatch confirmation to process inventory.
+                        </p>
+                        <div class="slds-scrollable_x slds-m-top_small">
+                            <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col"><div class="slds-truncate">Product</div></th>
+                                        <th scope="col"><div class="slds-truncate">Product code</div></th>
+                                        <th scope="col"><div class="slds-truncate">Barcode</div></th>
+                                        <th scope="col"><div class="slds-truncate">Dispatched</div></th>
+                                        <th scope="col"><div class="slds-truncate">Scanned</div></th>
+                                        <th scope="col"><div class="slds-truncate">Remaining</div></th>
+                                        <th scope="col"><div class="slds-truncate">Unit</div></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <template for:each={dispatchResult.lines} for:item="line">
+                                        <tr key={line.id}>
+                                            <th scope="row"><div class="slds-truncate">{line.productName}</div></th>
+                                            <td>{line.productCode}</td>
+                                            <td>{line.barcode}</td>
+                                            <td>{line.quantity}</td>
+                                            <td>{line.scannedQuantity}</td>
+                                            <td>{line.remainingQuantity}</td>
+                                            <td>{line.unitOfMeasure}</td>
+                                        </tr>
+                                    </template>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                </template>
+            </template>
+
+            <template lwc:if={lookupResult}>
+                <section class="slds-box slds-theme_default slds-m-top_medium" aria-live="polite">
+                    <h2 class="slds-text-heading_small">{lookupResult.product.name}</h2>
+                    <p class="slds-text-body_small slds-m-top_x-small">
+                        Product code: {lookupResult.product.productCode}
+                        <span class="slds-p-horizontal_x-small">|</span>
+                        Barcode: {lookupResult.product.barcode}
+                        <span class="slds-p-horizontal_x-small">|</span>
+                        UOM: {lookupResult.product.unitOfMeasure}
+                    </p>
+
+                    <template lwc:if={hasStock}>
+                        <div class="slds-scrollable_x slds-m-top_small">
+                            <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col"><div class="slds-truncate">Warehouse</div></th>
+                                        <th scope="col"><div class="slds-truncate">Available</div></th>
+                                        <th scope="col"><div class="slds-truncate">Reserved</div></th>
+                                        <th scope="col"><div class="slds-truncate">On hand</div></th>
+                                        <th scope="col"><div class="slds-truncate">Status</div></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <template for:each={lookupResult.stock} for:item="stock">
+                                        <tr key={stock.inventoryId}>
+                                            <th scope="row"><div class="slds-truncate">{stock.warehouseName}</div></th>
+                                            <td>{stock.availableQuantity}</td>
+                                            <td>{stock.reservedQuantity}</td>
+                                            <td>{stock.onHandQuantity}</td>
+                                            <td>{stock.stockStatus}</td>
+                                        </tr>
+                                    </template>
+                                </tbody>
+                            </table>
+                        </div>
+                    </template>
+                    <template lwc:else>
+                        <p class="slds-text-body_small slds-m-top_small">
+                            No inventory records are visible to your Salesforce user for this product.
+                        </p>
+                    </template>
+                </section>
+            </template>
+        </div>
+    </lightning-card>
+</template>

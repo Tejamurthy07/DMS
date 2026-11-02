@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Return_Request__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>Related Sales Return</label>
+    <referenceTo>Return_Request__c</referenceTo>
+    <relationshipLabel>DMS Credit Notes</relationshipLabel>
+    <relationshipName>DMS_Credit_Notes</relationshipName>
+    <type>Lookup</type>
+</CustomField>

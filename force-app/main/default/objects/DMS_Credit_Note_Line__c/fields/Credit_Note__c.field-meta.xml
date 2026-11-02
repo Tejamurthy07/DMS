@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Credit_Note__c</fullName>
+    <label>Credit Note</label>
+    <referenceTo>DMS_Credit_Note__c</referenceTo>
+    <relationshipLabel>Credit Note Lines</relationshipLabel>
+    <relationshipName>Credit_Note_Lines</relationshipName>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

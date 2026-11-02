@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product_Batch__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>Product Batch</label>
+    <referenceTo>Product_Batch__c</referenceTo>
+    <relationshipLabel>Sales Return Items</relationshipLabel>
+    <relationshipName>Sales_Return_Items</relationshipName>
+    <type>Lookup</type>
+</CustomField>

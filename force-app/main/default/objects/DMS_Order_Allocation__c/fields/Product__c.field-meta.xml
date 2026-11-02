@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product__c</fullName>
+    <label>Product</label>
+    <referenceTo>Product2</referenceTo>
+    <relationshipLabel>DMS Product Allocations</relationshipLabel>
+    <relationshipName>DMS_Product_Allocations</relationshipName>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,98 @@
+<apex:page controller="DMSPaymentReceiptPdfController"
+           renderAs="pdf"
+           showHeader="false"
+           standardStylesheets="false"
+           applyHtmlTag="false">
+    <html>
+        <head>
+            <style>
+                @page { size: A4; margin: 18mm; }
+                body { font: 10pt Arial, sans-serif; color: #202b3c; }
+                h1 { margin: 0 0 8px; font-size: 20pt; }
+                h2 { margin: 20px 0 8px; font-size: 12pt; }
+                p { margin: 4px 0; }
+                .header, .addresses { width: 100%; }
+                .header td { width: 50%; vertical-align: top; }
+                .header td:last-child { text-align: right; }
+                .addresses { margin: 20px 0; border-top: 1px solid #9aa5b4; border-bottom: 1px solid #9aa5b4; }
+                .addresses td { width: 50%; padding: 10px 4px; vertical-align: top; }
+                table.lines { width: 100%; border-collapse: collapse; }
+                .lines th, .lines td { padding: 7px 5px; border-bottom: 1px solid #d8dee7; text-align: right; }
+                .lines th:first-child, .lines td:first-child { text-align: left; }
+                .totals { width: 55%; margin: 16px 0 0 auto; }
+                .totals td { padding: 5px; }
+                .totals td:last-child { text-align: right; }
+                .grand-total { border-top: 1px solid #202b3c; font-weight: bold; }
+                .receipt-total { margin-top: 20px; padding: 12px; background: #edf4ff; font-size: 14pt; font-weight: bold; }
+                .notes { margin-top: 18px; white-space: pre-wrap; }
+            </style>
+        </head>
+        <body>
+            <apex:outputPanel rendered="{!receipt != null && invoice != null}">
+                <table class="header">
+                    <tr>
+                        <td>
+                            <strong>{!invoice.Distributor__r.Name}</strong>
+                            <p>{!invoice.Distributor__r.BillingStreet}</p>
+                            <p>{!invoice.Distributor__r.BillingCity} {!invoice.Distributor__r.BillingState} {!invoice.Distributor__r.BillingPostalCode}</p>
+                            <p>{!invoice.Distributor__r.BillingCountry}</p>
+                            <p>{!invoice.Distributor__r.Phone}</p>
+                        </td>
+                        <td>
+                            <h1>Payment receipt</h1>
+                            <p><strong>Receipt:</strong> {!receipt.Name}</p>
+                            <p><strong>Date:</strong> <apex:outputText value="{0,date,dd MMM yyyy}"><apex:param value="{!receipt.Receipt_Date__c}"/></apex:outputText></p>
+                            <p><strong>Invoice:</strong> {!invoice.Name}</p>
+                            <p><strong>Order:</strong> {!invoice.Secondary_Order__r.OrderNumber}</p>
+                        </td>
+                    </tr>
+                </table>
+                <table class="addresses">
+                    <tr>
+                        <td>
+                            <strong>Received from</strong>
+                            <p>{!invoice.Retailer__r.Name}</p>
+                            <p>{!invoice.Retailer__r.BillingStreet}</p>
+                            <p>{!invoice.Retailer__r.BillingCity} {!invoice.Retailer__r.BillingState} {!invoice.Retailer__r.BillingPostalCode}</p>
+                        </td>
+                        <td>
+                            <strong>Payment details</strong>
+                            <p>Method: {!receipt.Payment_Method__c}</p>
+                            <p>Reference: {!receipt.Reference_Number__c}</p>
+                        </td>
+                    </tr>
+                </table>
+                <table class="lines">
+                    <thead>
+                        <tr>
+                            <th>Product</th><th>Qty</th><th>Unit price</th>
+                            <th>Discount</th><th>Tax</th><th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <apex:repeat value="{!invoiceLines}" var="line">
+                            <tr>
+                                <td>{!line.Product__r.Name}</td>
+                                <td>{!line.Quantity__c} {!line.Unit_of_Measure__c}</td>
+                                <td><apex:outputText value="{0,number,currency}"><apex:param value="{!line.Unit_Price__c}"/></apex:outputText></td>
+                                <td><apex:outputText value="{0,number,currency}"><apex:param value="{!line.Discount_Amount__c}"/></apex:outputText></td>
+                                <td><apex:outputText value="{0,number,currency}"><apex:param value="{!line.Tax_Amount__c}"/></apex:outputText></td>
+                                <td><apex:outputText value="{0,number,currency}"><apex:param value="{!line.Line_Total__c}"/></apex:outputText></td>
+                            </tr>
+                        </apex:repeat>
+                    </tbody>
+                </table>
+                <table class="totals">
+                    <tr><td>Invoice total</td><td><apex:outputText value="{0,number,currency}"><apex:param value="{!invoice.Invoice_Total__c}"/></apex:outputText></td></tr>
+                    <tr class="grand-total"><td>Amount received</td><td><apex:outputText value="{0,number,currency}"><apex:param value="{!receipt.Amount__c}"/></apex:outputText></td></tr>
+                    <tr><td>Balance after receipt</td><td><apex:outputText value="{0,number,currency}"><apex:param value="{!receipt.Balance_After_Receipt__c}"/></apex:outputText></td></tr>
+                </table>
+                <div class="receipt-total">Payment received: <apex:outputText value="{0,number,currency}"><apex:param value="{!receipt.Amount__c}"/></apex:outputText></div>
+                <p class="notes">{!receipt.Notes__c}</p>
+            </apex:outputPanel>
+            <apex:outputPanel rendered="{!receipt == null || invoice == null}">
+                <h1>Receipt unavailable</h1>
+            </apex:outputPanel>
+        </body>
+    </html>
+</apex:page>

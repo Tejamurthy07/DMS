@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <label>DMS Invoice Line</label>
+    <nameField>
+        <displayFormat>DMIL-{000000}</displayFormat>
+        <label>Invoice Line Number</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>DMS Invoice Lines</pluralLabel>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

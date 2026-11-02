@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Transaction_Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Transaction Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Primary Order Receipt</fullName>
+                <default>false</default>
+                <label>Primary Order Receipt</label>
+            </value>
+            <value>
+                <fullName>Secondary Order Sale</fullName>
+                <default>false</default>
+                <label>Secondary Order Sale</label>
+            </value>
+            <value>
+                <fullName>Primary Order Sale</fullName>
+                <default>false</default>
+                <label>Primary Order Sale</label>
+            </value>
+            <value>
+                <fullName>Sales Return</fullName>
+                <default>false</default>
+                <label>Sales Return</label>
+            </value>
+            <value>
+                <fullName>Purchase Return</fullName>
+                <default>false</default>
+                <label>Purchase Return</label>
+            </value>
+            <value>
+                <fullName>Stock Adjustment</fullName>
+                <default>false</default>
+                <label>Stock Adjustment</label>
+            </value>
+            <value>
+                <fullName>Damaged Stock</fullName>
+                <default>false</default>
+                <label>Damaged Stock</label>
+            </value>
+            <value>
+                <fullName>Stock Transfer</fullName>
+                <default>false</default>
+                <label>Stock Transfer</label>
+            </value>
+            <value>
+                <fullName>Stock Reservation</fullName>
+                <default>false</default>
+                <label>Stock Reservation</label>
+            </value>
+            <value>
+                <fullName>Stock Release</fullName>
+                <default>false</default>
+                <label>Stock Release</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

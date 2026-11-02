@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Batch_Key__c</fullName>
+    <caseSensitive>false</caseSensitive>
+    <externalId>true</externalId>
+    <label>Batch Key</label>
+    <length>64</length>
+    <type>Text</type>
+    <unique>true</unique>
+</CustomField>

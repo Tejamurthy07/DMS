@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Restock_Decision__c</fullName>
+    <label>Restock Decision</label>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value><fullName>Pending</fullName><default>true</default><label>Pending</label></value>
+            <value><fullName>Restock</fullName><default>false</default><label>Restock</label></value>
+            <value><fullName>Do Not Restock</fullName><default>false</default><label>Do Not Restock</label></value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

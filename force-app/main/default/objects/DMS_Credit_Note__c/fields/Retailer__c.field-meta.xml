@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Retailer__c</fullName>
+    <deleteConstraint>Restrict</deleteConstraint>
+    <label>Retailer</label>
+    <referenceTo>Account</referenceTo>
+    <relationshipLabel>DMS Credit Notes as Retailer</relationshipLabel>
+    <relationshipName>DMS_Credit_Notes_Retailer</relationshipName>
+    <required>true</required>
+    <type>Lookup</type>
+</CustomField>
